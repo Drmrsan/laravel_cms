@@ -1,5 +1,6 @@
 <?php
 
+use App\Post;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +19,7 @@ Route::get('about', 'PagesController@about');
 Route::get('contact', 'PagesController@contact');
 
 Route::resource('posts', 'PostsController');
+
+Route::get('/restore', function (){
+	$post = Post::withTrashed()->where('is_admin',0)->forceDelete();
+});
